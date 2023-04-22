@@ -1,5 +1,5 @@
 # INFO
-# WebServer + RestServer 
+# WebServer + RestServer + Mongo
 
 ```
 Este proyecto utiliza las nociones básicas de un rest server con MVC. 

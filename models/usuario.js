@@ -1,4 +1,5 @@
-import { Schema, model } from "moongose";
+import { Schema, model } from "mongoose";
+
 
 const usuarioSchema = Schema({
     nombre: {
@@ -31,6 +32,12 @@ const usuarioSchema = Schema({
         default: false
     }
 })
+
+usuarioSchema.methods.toJSON = function (){
+    const {__v, password, ...usuario} = this.toObject();
+    return usuario;
+}
+
 
 const modelSchema = model('Usuario',usuarioSchema)
 
