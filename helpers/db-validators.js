@@ -1,6 +1,6 @@
 import { roleModel } from '../models/role.js';
 import { modelSchema } from '../models/usuario.js';
-import {check} from 'express-validator'
+
 
 const esRoleValido = async (rol= '') => {
     const existeRol = await roleModel.findOne({rol})
@@ -18,8 +18,15 @@ const emailExiste = async(correo = '') => {
     }
 }
 
+const existeUsuarioPorId = async( id ) => {
+    const existeUsuario = await modelSchema.findById(id);
+    if( !existeUsuario ){
+        throw new Error (`El id ${id} no es un id valido.`)
+    }
+}
 
 export {
     esRoleValido,
-    emailExiste
+    emailExiste,
+    existeUsuarioPorId
 }
