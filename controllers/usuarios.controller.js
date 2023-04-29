@@ -45,6 +45,7 @@ const usuariosPut = async (req, res = response) => {
     msg: 'put API - controlador',
     usuario
   });
+  
 };
 
 const usuariosPost = async (req, res = response) => {
@@ -72,14 +73,19 @@ const usuariosPost = async (req, res = response) => {
 const usuariosDelete = async (req, res = response) => {
 
   const {id} = req.params;
+//  const uid = req.uid;
   // borrar fisicamente
-  // await Usuario.findBIdAndDelete(id);
-  await Usuario.findByIdAndUpdate(id, {estado:false});
+  const usuario  = await Usuario.findByIdAndUpdate(id,{estado:false});
+  const usuarioAutenticado = req.usuario;
+ // await Usuario.findByIdAndUpdate(id, {estado:false});
   
+  //const usuarioAutenticado;
 
-  const mensaje = 'Id eliminado correctamente'  
+  const mensaje = 'Id eliminado correctamente'  ;
+  console.log(usuarioAutenticado)
   res.json({
-    id,
+    usuario,
+    usuarioAutenticado,
     mensaje
   });
 };
@@ -90,5 +96,7 @@ const usuariosPatch = (req, res = response) => {
     msg: 'patch API - controlador',
   });
 };
+
+
 
 export {usuariosGet, usuariosPut, usuariosPost, usuariosDelete, usuariosPatch};
