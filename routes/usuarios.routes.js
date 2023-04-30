@@ -7,7 +7,7 @@ import {usuariosDelete,
         usuariosPost,
         usuariosPut} from '../controllers/usuarios.controller.js'
 
-import { emailExiste, esRoleValido, existeUsuarioPorId } from '../helpers/db-validators.js';
+import { emailExiste, esRoleValido, existeUsuarioPorId} from '../helpers/db-validators.js';
 
 import {esAdminRole,tieneRole,validarJWT, validarCampos } from '../middlewares/index.js'
 
