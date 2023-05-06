@@ -11,7 +11,6 @@ const esRoleValido = async (rol= '') => {
 
 const emailExiste = async(correo = '') => {
 
-
     const existeEmail = await usuarioModel.findOne({correo});
     if(existeEmail){
         throw new Error (`El email ${correo} ya esta registrado.`)

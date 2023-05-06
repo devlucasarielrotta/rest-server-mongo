@@ -16,9 +16,10 @@ class Server {
         this.port = process.env.PORT
         this.paths = {
             auth:       '/api/auth',
-            usuarios:   '/api/usuarios',
+            buscar:     '/api/buscar',
             categorias: '/api/categorias',
-            productos: '/api/productos'
+            productos:  '/api/productos',
+            usuarios:   '/api/usuarios'
         }
         // this.usuariosRoutesPath = '/api/usuarios'
         // this.authPath = '/api/auth'
@@ -54,10 +55,10 @@ class Server {
     routes() {
 
        this.app.use(this.paths.auth, routerAuth)
-       this.app.use(this.paths.usuarios, routerUsuario)
+       this.app.use(this.paths.buscar, routerBuscar)
        this.app.use(this.paths.categorias, routerCategoria)
        this.app.use(this.paths.productos, routerProductos)
-       this.app.use(this.paths.productos, routerBuscar)
+       this.app.use(this.paths.usuarios, routerUsuario)
 
     }
     

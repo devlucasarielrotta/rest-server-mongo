@@ -4,7 +4,7 @@ const esAdminRole = (req,res = response, next) => {
 
     if( !req.usuario ) {
         return res.status(500).json({
-            msg: 'Se quiere vlaidar el role sin validar el token primero'
+            msg: 'Se quiere validar el role sin validar el token primero'
         } )
     }
 
@@ -19,6 +19,7 @@ const esAdminRole = (req,res = response, next) => {
     
     next();
 }
+
 const tieneRole = ( ...roles ) => {
 
 
@@ -38,4 +39,5 @@ const tieneRole = ( ...roles ) => {
         next();
     }
 }
+
 export { esAdminRole, tieneRole }
