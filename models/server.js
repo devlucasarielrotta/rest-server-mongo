@@ -2,10 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
-import {router as routerUsuario} from '../routes/usuarios.routes.js'
-import {router as routerAuth} from '../routes/auth.js'
-import {router as routerCategoria } from '../routes/categorias.routes.js'
-import {router as routerProductos } from '../routes/productos.routes.js'
+import { routerAuth,routerBuscar,routerCategoria,routerProductos,routerUsuario } from '../routes/index.routes.js';
 
 import { dbConnection } from '../database/config.js';
 
@@ -60,6 +57,7 @@ class Server {
        this.app.use(this.paths.usuarios, routerUsuario)
        this.app.use(this.paths.categorias, routerCategoria)
        this.app.use(this.paths.productos, routerProductos)
+       this.app.use(this.paths.productos, routerBuscar)
 
     }
     
