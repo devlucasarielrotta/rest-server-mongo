@@ -1,5 +1,5 @@
 import { roleModel } from '../models/role.js';
-import {usuarioModel , categoriaModel } from '../models/index.js';
+import {usuarioModel , categoriaModel, productoModel } from '../models/index.js';
 
 
 const esRoleValido = async (rol= '') => {
@@ -32,9 +32,17 @@ const existeCategoriaPorId = async ( id ) => {
     }
 }
 
+const existeProductoPorId = async ( id ) => {
+    const producto  = await productoModel.findById(id)
+    if( !producto ){
+        throw new Error (`El producto ${id} no existe`)
+    }
+}
+
 export {
     esRoleValido,
     emailExiste,
     existeUsuarioPorId,
-    existeCategoriaPorId
+    existeCategoriaPorId,
+    existeProductoPorId
 }
