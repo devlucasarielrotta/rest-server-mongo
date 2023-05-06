@@ -5,6 +5,7 @@ import cors from 'cors'
 import {router as routerUsuario} from '../routes/usuarios.routes.js'
 import {router as routerAuth} from '../routes/auth.js'
 import {router as routerCategoria } from '../routes/categorias.routes.js'
+import {router as routerProductos } from '../routes/productos.routes.js'
 
 import { dbConnection } from '../database/config.js';
 
@@ -19,7 +20,8 @@ class Server {
         this.paths = {
             auth:       '/api/auth',
             usuarios:   '/api/usuarios',
-            categorias: '/api/categorias'
+            categorias: '/api/categorias',
+            productos: '/api/productos'
         }
         // this.usuariosRoutesPath = '/api/usuarios'
         // this.authPath = '/api/auth'
@@ -57,6 +59,7 @@ class Server {
        this.app.use(this.paths.auth, routerAuth)
        this.app.use(this.paths.usuarios, routerUsuario)
        this.app.use(this.paths.categorias, routerCategoria)
+       this.app.use(this.paths.productos, routerProductos)
 
     }
     
