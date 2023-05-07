@@ -1,9 +1,10 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import fileUpload from 'express-fileupload';
 
-import { routerAuth,routerBuscar,routerCategoria,routerProductos,routerUsuario } from '../routes/index.routes.js';
 
+import { routerAuth,routerBuscar,routerCategoria,routerProductos,routerUsuario, routerUpload } from '../routes/index.routes.js';
 import { dbConnection } from '../database/config.js';
 
 dotenv.config();
@@ -19,7 +20,9 @@ class Server {
             buscar:     '/api/buscar',
             categorias: '/api/categorias',
             productos:  '/api/productos',
+            uploads:    '/api/uploads',
             usuarios:   '/api/usuarios'
+
         }
         // this.usuariosRoutesPath = '/api/usuarios'
         // this.authPath = '/api/auth'
@@ -41,7 +44,12 @@ class Server {
     }
 
     middlewares(){
-
+        //fileUpload - carga de archivos
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/',
+            createParentPath: true
+        }))
         // cors midlde ware
         this.app.use(cors());
 
@@ -58,6 +66,7 @@ class Server {
        this.app.use(this.paths.buscar, routerBuscar)
        this.app.use(this.paths.categorias, routerCategoria)
        this.app.use(this.paths.productos, routerProductos)
+       this.app.use(this.paths.uploads, routerUpload)
        this.app.use(this.paths.usuarios, routerUsuario)
 
     }
